@@ -1,0 +1,22 @@
+apiVersion: kpt.dev/v1
+kind: Kptfile
+metadata: # kpt-merge: /remote-site-router-config-package
+  name: remote-site-router-config-package
+  annotations:
+    config.kubernetes.io/local-config: "true"
+    internal.kpt.dev/upstream-identifier: 'kpt.dev|Kptfile|default|remote-site-router-config-package'
+upstream:
+  type: git
+  git:
+    repo: https://github.com/infinitydon/nephio-proxmox-packages.git
+    directory: remote-site-router-config-package
+    ref: r3
+upstreamLock:
+  type: git
+  git:
+    repo: https://github.com/infinitydon/nephio-proxmox-packages.git
+    directory: remote-site-router-config-package
+    ref: r3
+    commit: 4181581221a1dc7b2e93386ed7ab12a36cbd79e6
+info:
+  description: this package is used to deploy FRR site router config
