@@ -8,4 +8,21 @@ metadata: # kpt-merge: frr-k8s-system/site-router-config
 spec:
   raw:
     priority: 5
-    rawConfig: FRR_SITE_ROUTER_CONFIG
+    rawConfig: |-
+      router bgp 65005 vrf n2vrf
+       no bgp ebgp-requires-policy
+       no bgp hard-administrative-reset
+       no bgp default ipv4-unicast
+       no bgp graceful-restart notification
+       bgp graceful-restart preserve-fw-state
+       no bgp network import-check
+       neighbor 192.168.55.3 remote-as 65005
+       !
+      router bgp 65006 vrf n4vrf
+       no bgp ebgp-requires-policy
+       no bgp hard-administrative-reset
+       no bgp default ipv4-unicast
+       no bgp graceful-restart notification
+       bgp graceful-restart preserve-fw-state
+       no bgp network import-check
+       neighbor 192.168.56.3 remote-as 65006
