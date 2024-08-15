@@ -1,0 +1,36 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata: # kpt-merge: flux-system/openebs
+  name: openebs
+  namespace: flux-system
+  annotations:
+    internal.kpt.dev/upstream-identifier: 'source.toolkit.fluxcd.io|HelmRepository|flux-system|openebs'
+spec:
+  url: https://openebs.github.io/openebs
+  interval: 5m
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata: # kpt-merge: openebs/openebs
+  name: openebs
+  namespace: openebs
+  annotations:
+    internal.kpt.dev/upstream-identifier: 'helm.toolkit.fluxcd.io|HelmRelease|openebs|openebs'
+spec:
+  releaseName: openebs
+  chart:
+    spec:
+      chart: openebs
+      sourceRef:
+        kind: HelmRepository
+        name: openebs
+        namespace: flux-system
+      version: "3.9.0"
+  interval: 5m
+  install:
+    createNamespace: true
+  values:
+    localprovisioner:
+      hostpathClass:
+        enabled: true
+        isDefaultClass: true
