@@ -1,0 +1,10 @@
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata: # kpt-merge: metallb-system/k0smotron-pool
+  name: k0smotron-pool
+  namespace: metallb-system
+  annotations:
+    internal.kpt.dev/upstream-identifier: 'metallb.io|IPAddressPool|metallb-system|k0smotron-pool'
+spec:
+  addresses:
+  - 10.0.1.240-10.0.1.245
