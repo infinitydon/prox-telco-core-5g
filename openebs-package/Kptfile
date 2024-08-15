@@ -1,0 +1,22 @@
+apiVersion: kpt.dev/v1
+kind: Kptfile
+metadata: # kpt-merge: /openebs-package
+  name: openebs-package
+  annotations:
+    config.kubernetes.io/local-config: "true"
+    internal.kpt.dev/upstream-identifier: 'kpt.dev|Kptfile|default|openebs-package'
+upstream:
+  type: git
+  git:
+    repo: https://github.com/infinitydon/nephio-proxmox-packages.git
+    directory: openebs-package
+    ref: r3
+upstreamLock:
+  type: git
+  git:
+    repo: https://github.com/infinitydon/nephio-proxmox-packages.git
+    directory: openebs-package
+    ref: r3
+    commit: 22b61a086b0e411a017948527fcf4f09c62d7bce
+info:
+  description: this package is used to create the EKS terraform FLuxcD GitRepo Resource
