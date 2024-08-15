@@ -17,6 +17,6 @@ upstreamLock:
     repo: https://github.com/infinitydon/nephio-proxmox-packages.git
     directory: openebs-helm-repo-package
     ref: r3
-    commit: 1b7dfc6ff2d87bff4427d2566b6b79ea75c2d4d2
+    commit: d95b2a51231ed52ba0a7e643603fcd11413e8533
 info:
   description: this package is used to create openEBS localstorage PVC
