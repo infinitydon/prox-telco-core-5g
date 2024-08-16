@@ -1,0 +1,9 @@
+apiVersion: workload.nephio.org/v1alpha1
+kind: NFDeployment
+metadata: # kpt-merge: nrf-example/nrf-example
+  name: nrf-core
+  namespace: oai-core
+  annotations:
+    internal.kpt.dev/upstream-identifier: 'workload.nephio.org|NFDeployment|nrf-example|nrf-example'
+spec:
+  provider: nrf.openairinterface.org
