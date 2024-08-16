@@ -1,0 +1,9 @@
+apiVersion: workload.nephio.org/v1alpha1
+kind: NFDeployment
+metadata: # kpt-merge: udr-example/udr-example
+  name: udr-example
+  namespace: udr-example
+  annotations:
+    internal.kpt.dev/upstream-identifier: 'workload.nephio.org|NFDeployment|udr-example|udr-example'
+spec:
+  provider: udr.openairinterface.org
