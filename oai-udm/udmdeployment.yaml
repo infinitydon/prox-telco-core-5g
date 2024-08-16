@@ -1,0 +1,9 @@
+apiVersion: workload.nephio.org/v1alpha1
+kind: NFDeployment
+metadata: # kpt-merge: udm-example/udm-example
+  name: udm-core
+  namespace: oai-core
+  annotations:
+    internal.kpt.dev/upstream-identifier: 'workload.nephio.org|NFDeployment|udm-example|udm-example'
+spec:
+  provider: udm.openairinterface.org
