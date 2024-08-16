@@ -1,0 +1,26 @@
+apiVersion: frrk8s.metallb.io/v1beta1
+kind: FRRConfiguration
+metadata: # kpt-merge: frr-k8s-system/site-router-config
+  name: site-router-config
+  namespace: frr-k8s-system
+  annotations:
+    internal.kpt.dev/upstream-identifier: 'frrk8s.metallb.io|FRRConfiguration|frr-k8s-system|site-router-config'
+spec:
+  raw:
+    priority: 5
+    rawConfig: |-
+      router bgp 65002 vrf n2vrf
+       no bgp ebgp-requires-policy
+       no bgp hard-administrative-reset
+       no bgp graceful-restart notification
+       bgp graceful-restart preserve-fw-state
+       no bgp network import-check
+       neighbor 192.168.55.3 remote-as 65002
+       !
+      router bgp 65004 vrf n4vrf
+       no bgp ebgp-requires-policy
+       no bgp hard-administrative-reset
+       no bgp graceful-restart notification
+       bgp graceful-restart preserve-fw-state
+       no bgp network import-check
+       neighbor 192.168.56.3 remote-as 65004
