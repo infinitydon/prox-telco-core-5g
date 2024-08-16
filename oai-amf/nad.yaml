@@ -18,9 +18,9 @@ apiVersion: k8s.cni.cncf.io/v1
 kind: NetworkAttachmentDefinition
 metadata: # kpt-merge: amf-example/amf-core-n2
   name: amf-core-n2
-  namespace: amf-example
+  namespace: oai-core
   annotations:
-    internal.kpt.dev/upstream-identifier: 'k8s.cni.cncf.io|NetworkAttachmentDefinition|amf-example|amf-core-n2'
+    internal.kpt.dev/upstream-identifier: k8s.cni.cncf.io|NetworkAttachmentDefinition|amf-example|amf-core-n2
 spec:
   config: |-
     {
@@ -32,11 +32,16 @@ spec:
           "capabilities": {
             "ips": true
           },
-          "master": "AMF_N2_MULTUSPARENTINTERFACE",
+          "master": "mltus_ens19_106",
           "mode": "bridge",
           "ipam": {
             "type": "static",
-            "routes": [{ "dst": "CUCP_N2_NETWORKADDRESS", "gw": "AMF_N2_GW" }]
+            "routes": [
+              {
+                "dst": "192.168.59.0/24",
+                "gw": "192.168.55.1"
+              }
+            ]
           }
         }
       ]

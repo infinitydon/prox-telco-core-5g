@@ -4,8 +4,8 @@ metadata: # kpt-merge: /control-plane
   name: control-plane
   annotations:
     config.kubernetes.io/local-config: "true"
-    specializer.nephio.org/owner: workload.nephio.org/v1alpha1.NFDeployment.amf-example
-    specializer.nephio.org/namespace: example
+    specializer.nephio.org/owner: workload.nephio.org/v1alpha1.NFDeployment.amf-core
+    specializer.nephio.org/namespace: oai-core
     internal.kpt.dev/upstream-identifier: 'req.nephio.org|Capacity|default|control-plane'
 spec:
   maxSubscribers: 1000

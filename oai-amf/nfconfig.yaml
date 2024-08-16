@@ -2,7 +2,7 @@ apiVersion: workload.nephio.org/v1alpha1
 kind: NFConfig
 metadata: # kpt-merge: example/oai-amf-config
   name: oai-amf-config
-  namespace: example
+  namespace: oai-core
   annotations:
     internal.kpt.dev/upstream-identifier: 'workload.nephio.org|NFConfig|example|oai-amf-config'
 spec:
