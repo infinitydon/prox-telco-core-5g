@@ -20,3 +20,12 @@ upstreamLock:
     commit: e73a0b1c4d7295ce11432bda6c9ec70f66120883
 info:
   description: this package is used to metllab ipool and l2 advertisement
+pipeline:
+  mutators:
+  - name: PackageVariant.core-metallb-ip-pool-l2-adv..0
+    image: gcr.io/kpt-fn/search-replace:v0.2.0
+    configMap:
+      by-value: IP_ADDR_POOL
+      put-value: 10.0.1.246-10.0.1.248
+    selectors:
+    - kind: IPAddressPool
