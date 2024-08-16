@@ -7,4 +7,4 @@ metadata: # kpt-merge: metallb-system/k0smotron-pool
     internal.kpt.dev/upstream-identifier: 'metallb.io|IPAddressPool|metallb-system|k0smotron-pool'
 spec:
   addresses:
-  - IP_ADDR_POOL
+  - 10.0.1.246-10.0.1.248
