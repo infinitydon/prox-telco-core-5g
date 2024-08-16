@@ -1,0 +1,27 @@
+apiVersion: k8s.cni.cncf.io/v1
+kind: NetworkAttachmentDefinition
+metadata: # kpt-merge: smf-example/smf-core-n4
+  name: smf-core-n4
+  namespace: smf-example
+  annotations:
+    internal.kpt.dev/upstream-identifier: 'k8s.cni.cncf.io|NetworkAttachmentDefinition|smf-example|smf-core-n4'
+spec:
+  config: |
+    {
+      "cniVersion": "0.3.1",
+      "name": "smf-core-n4",
+      "plugins": [
+        {
+          "type": "macvlan",
+          "capabilities": {
+            "ips": true
+          },
+          "master": "SMF_N4_MULTUSPARENTINTERFACE",
+          "mode": "bridge",
+          "ipam": {
+            "type": "static",
+            "routes": [{ "dst": "UPF_N4_NETWORKADDRESS", "gw": "SMF_N4_GW" }]
+          }
+        }
+      ]
+    }

@@ -1,0 +1,26 @@
+apiVersion: workload.nephio.org/v1alpha1
+kind: NFDeployment
+metadata: # kpt-merge: smf-example/smf-example
+  name: smf-example
+  namespace: smf-example
+  annotations:
+    internal.kpt.dev/upstream-identifier: 'workload.nephio.org|NFDeployment|smf-example|smf-example'
+spec:
+  provider: smf.openairinterface.org
+  capacity:
+    maxNFConnections: 5
+    maxSessions: 500
+  interfaces:
+  - name: n4
+    ipv4:
+      address: SMF_N4_IP
+      gateway: SMF_N4_GW
+    vlanID: 31
+  networkInstances:
+  - name: vpc-internal
+    interfaces:
+    - n4
+  parametersRefs:
+  - name: oai-smf-config
+    apiVersion: workload.nephio.org/v1alpha1
+    kind: NFConfig
