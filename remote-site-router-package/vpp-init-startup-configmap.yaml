@@ -62,4 +62,4 @@ metadata: # kpt-merge: frr-k8s-system/vpp-init-conf
   annotations:
     internal.kpt.dev/upstream-identifier: '|ConfigMap|frr-k8s-system|vpp-init-conf'
 data:
-  bootstrap.vpp: VPP_CFG
+  bootstrap.vpp: "lcp lcp-sync on\nlcp lcp-auto-subint on\nip table add 1\nip table add 2              \ncreate sub-interfaces dpdk0 106\ncreate sub-interfaces dpdk0 107\ncreate sub-interfaces dpdk0 203\ncreate sub-interfaces dpdk0 204\nset interface ip table dpdk0.106 1\nset interface ip table dpdk0.203 1\nset interface ip table dpdk0.107 2\nset interface ip table dpdk0.204 2\nset interface state dpdk0 up\nset interface state dpdk0.106 up\nset interface state dpdk0.107 up\nset interface state dpdk0.203 up\nset interface state dpdk0.204 up\nlcp create dpdk0 host-if dpdk0\nlcp create dpdk0.106 host-if n2\nlcp create dpdk0.203 host-if n2uplink\nlcp create dpdk0.107 host-if n4\nlcp create dpdk0.204 host-if n4uplink\nset interface ip address dpdk0.106 192.168.55.1/24\nset interface ip address dpdk0.107 192.168.56.1/24\nset interface ip address dpdk0.203 192.168.60.13/30\nset interface ip address dpdk0.204 192.168.60.17/30\n"
