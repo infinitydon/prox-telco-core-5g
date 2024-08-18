@@ -20,3 +20,28 @@ upstreamLock:
     commit: 7cd5e6a5be4c88994cebb4dbb3c9b47d783bf711
 info:
   description: this package is used to deploy metallb
+pipeline:
+  mutators:
+  - name: PackageVariant.core-site-router-config..0
+    image: gcr.io/kpt-fn/search-replace:v0.2.0
+    configMap:
+      by-value: VPP_CFG
+      put-value: "lcp lcp-sync on\nlcp lcp-auto-subint on\nip table add 1\nip table add 2              \ncreate sub-interfaces dpdk0 106\ncreate sub-interfaces dpdk0 107\ncreate sub-interfaces dpdk0 203\ncreate sub-interfaces dpdk0 204\nset interface ip table dpdk0.106 1\nset interface ip table dpdk0.203 1\nset interface ip table dpdk0.107 2\nset interface ip table dpdk0.204 2\nset interface state dpdk0 up\nset interface state dpdk0.106 up\nset interface state dpdk0.107 up\nset interface state dpdk0.203 up\nset interface state dpdk0.204 up\nlcp create dpdk0 host-if dpdk0\nlcp create dpdk0.106 host-if n2\nlcp create dpdk0.203 host-if n2uplink\nlcp create dpdk0.107 host-if n4\nlcp create dpdk0.204 host-if n4uplink\nset interface ip address dpdk0.106 192.168.55.1/24\nset interface ip address dpdk0.107 192.168.56.1/24\nset interface ip address dpdk0.203 192.168.60.13/30\nset interface ip address dpdk0.204 192.168.60.17/30\n"
+    selectors:
+    - kind: ConfigMap
+  - name: PackageVariant.core-site-router-config..1
+    image: gcr.io/kpt-fn/search-replace:v0.2.0
+    configMap:
+      by-value: FRR_VPP_INT_CONFIG
+      put-value: |
+        sleep 20
+        ip link add dev n2vrf type vrf table 1
+        ip link add dev n4vrf type vrf table 2
+        ip link set dev n2vrf up
+        ip link set dev n4vrf up
+        ip link set dev n2 master n2vrf
+        ip link set dev n2uplink master n2vrf
+        ip link set dev n4 master n4vrf
+        ip link set dev n4uplink master n4vrf
+    selectors:
+    - kind: ConfigMap
