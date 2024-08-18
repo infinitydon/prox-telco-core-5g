@@ -2,7 +2,7 @@ apiVersion: workload.nephio.org/v1alpha1
 kind: NFConfig
 metadata: # kpt-merge: example/oai-smf-config
   name: oai-smf-config
-  namespace: example
+  namespace: oai-core
   annotations:
     internal.kpt.dev/upstream-identifier: 'workload.nephio.org|NFConfig|example|oai-smf-config'
 spec:
