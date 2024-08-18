@@ -1,0 +1,12 @@
+apiVersion: req.nephio.org/v1alpha1
+kind: Capacity
+metadata: # kpt-merge: /control-plane
+  name: control-plane
+  annotations:
+    config.kubernetes.io/local-config: "true"
+    specializer.nephio.org/owner: workload.nephio.org/v1alpha1.NFDeployment.smf-example
+    specializer.nephio.org/namespace: example
+    internal.kpt.dev/upstream-identifier: 'req.nephio.org|Capacity|default|control-plane'
+spec:
+  maxSessions: 500
+  maxNFConnections: 5
