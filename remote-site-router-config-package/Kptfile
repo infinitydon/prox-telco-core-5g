@@ -20,3 +20,29 @@ upstreamLock:
     commit: 7cd5e6a5be4c88994cebb4dbb3c9b47d783bf711
 info:
   description: this package is used to deploy FRR site router config
+pipeline:
+  mutators:
+  - name: PackageVariant.core-frr-router-config..0
+    image: gcr.io/kpt-fn/search-replace:v0.2.0
+    configMap:
+      by-value: FRR_SITE_ROUTER_CONFIG
+      put-value: |-
+        router bgp 65003 vrf n2vrf
+         no bgp ebgp-requires-policy
+         no bgp hard-administrative-reset
+         no bgp graceful-restart notification
+         bgp graceful-restart preserve-fw-state
+         no bgp network import-check
+         redistribute connected
+         neighbor 192.168.60.14 remote-as 65002
+         !
+        router bgp 65007 vrf n4vrf
+         no bgp ebgp-requires-policy
+         no bgp hard-administrative-reset
+         no bgp graceful-restart notification
+         bgp graceful-restart preserve-fw-state
+         no bgp network import-check
+         redistribute connected
+         neighbor 192.168.60.18 remote-as 65005
+    selectors:
+    - kind: FRRConfiguration
